@@ -20,7 +20,7 @@ def get_exchange_rate(date: str) -> float:
 
 
 def get_highest_and_closing_values() -> (float, float):
-    aggregate = polygon_client.get_aggs(ticker=ticker, multiplier=1, timespan="day", from_=buy_date, to="2024-03-31")
+    aggregate = polygon_client.get_aggs(ticker=ticker, multiplier=1, timespan="day", from_=buy_date, to="2023-12-31")
     highest = 0
     for value in aggregate:
         highest = max(highest, value.high)
