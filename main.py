@@ -26,7 +26,7 @@ def get_exchange_rate(date: str) -> float:
 
 
 def get_highest_and_closing_values(ticker: str, buy_date: str) -> (float, float):
-    aggregate = polygon_client.get_aggs(ticker=ticker, multiplier=1, timespan="day", from_=buy_date, to="2023-12-31")
+    aggregate = polygon_client.get_aggs(ticker=ticker, multiplier=1, timespan="day", from_=buy_date, to=f"{year}-12-31")
     highest = 0
     for value in aggregate:
         highest = max(highest, value.high)
@@ -68,7 +68,9 @@ if __name__ == "__main__":
     # parser.add_argument("buy_date", type=str, help="In yyyy-mm-dd format")  # yyyy-mm-dd
     # parser.add_argument("no_of_shares", type=int)
     parser.add_argument("file", type=str, help="CSV file containing list of stocks")
+    parser.add_argument("year", type=str, help="Year for filing return")
     args = parser.parse_args()
+    year = args.year
 
     stocks = get_stocks_list(args.file)
 
